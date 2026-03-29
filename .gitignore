@@ -1,0 +1,51 @@
+# Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Java / Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+/mvnw
+/mvnw.cmd
+.mtj.tmp/
+*.class
+*.log
+*.jar
+*.war
+*.ear
+*.tar.gz
+*.zip
+
+# Node / NPM
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+.classpath
+.project
+.settings/
+.factorypath
+bin/
+
+# Temporary files
+tmp/
+interview.json
+err.json
+query
+test_e2e.js
+mysql_boot.log
+mysql_startup.log
+boot_out.txt
+build.log
+build_out.txt
+err_out.txt
