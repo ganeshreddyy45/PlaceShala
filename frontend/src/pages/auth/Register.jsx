@@ -10,11 +10,6 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  import axios from "axios";
-
-  const handleRegister = async (formData) => {
-    await axios.post(`${import.meta.env.VITE_API_BASE_URL}/register`, formData);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
