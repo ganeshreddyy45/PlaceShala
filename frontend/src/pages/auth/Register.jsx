@@ -8,15 +8,20 @@ export default function Register() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const navigate = useNavigate();
+  import axios from "axios";
+
+  const handleRegister = async (formData) => {
+    await axios.post(`${import.meta.env.VITE_API_BASE_URL}/register`, formData);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
     setLoading(true);
-    
+
     try {
       if (isStudent) {
         await authApi.registerStudent(formData);
@@ -38,24 +43,22 @@ export default function Register() {
         <h2 className="text-4xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">Join Network</h2>
         <p className="text-slate-500 font-medium">Create your credentials to begin</p>
       </div>
-      
+
       {/* Role Toggle: Modern & Minimal */}
       <div className="flex p-1 bg-slate-200/50 dark:bg-slate-800/50 rounded-2xl mb-8 backdrop-blur-sm border border-slate-200/50 dark:border-slate-800">
         <button
           type="button"
           onClick={() => setIsStudent(true)}
-          className={`flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300 ${
-            isStudent ? 'bg-white dark:bg-slate-700 text-primary-600 shadow-xl' : 'text-slate-400'
-          }`}
+          className={`flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300 ${isStudent ? 'bg-white dark:bg-slate-700 text-primary-600 shadow-xl' : 'text-slate-400'
+            }`}
         >
           Student
         </button>
         <button
           type="button"
           onClick={() => setIsStudent(false)}
-          className={`flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300 ${
-            !isStudent ? 'bg-white dark:bg-slate-700 text-primary-600 shadow-xl' : 'text-slate-400'
-          }`}
+          className={`flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300 ${!isStudent ? 'bg-white dark:bg-slate-700 text-primary-600 shadow-xl' : 'text-slate-400'
+            }`}
         >
           Administrator
         </button>
@@ -88,7 +91,7 @@ export default function Register() {
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           />
         </div>
-        
+
         <div className="space-y-2">
           <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] ml-1">Security Secret</label>
           <input
