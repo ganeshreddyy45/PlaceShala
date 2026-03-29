@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: placeshala-backend
+    ports:
+      - "8081:8081"
+    environment:
+      - DB_URL=${DB_URL}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - MAIL_USERNAME=${MAIL_USERNAME}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - ALLOWED_ORIGINS=http://localhost:80,http://localhost:5173
+    networks:
+      - placeshala-network
+
+  frontend:
+    build: ./frontend
+    container_name: placeshala-frontend
+    ports:
+      - "80:80"
+    environment:
+      - VITE_API_BASE_URL=http://backend:8081
+    depends_on:
+      - backend
+    networks:
+      - placeshala-network
+
+networks:
+  placeshala-network:
+    driver: bridge
